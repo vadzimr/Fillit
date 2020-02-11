@@ -6,7 +6,7 @@
 /*   By: echeung <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 14:48:30 by echeung           #+#    #+#             */
-/*   Updated: 2020/02/10 15:49:39 by echeung          ###   ########.fr       */
+/*   Updated: 2020/02/10 16:18:26 by echeung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 # define SHAPE_18 "#...##..#"
 # define SHAPE_19 "###..#"
 
-int	read(char *str);
+int	read_file(char *str);
 int valid_tetrimino(char *buff, int ret);
 int valid_shape(char *buff);
 int valid_char(char *buff);
