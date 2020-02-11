@@ -6,7 +6,7 @@
 /*   By: echeung <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 18:56:37 by echeung           #+#    #+#             */
-/*   Updated: 2020/02/10 13:31:56 by echeung          ###   ########.fr       */
+/*   Updated: 2020/02/10 16:15:45 by echeung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	valid_tetrimino(char *buff, int ret)
 	return (1);
 }
 
-int	read(char *str)
+int	read_file(char *str)
 {
 	int		fd;
 	int		ret;
