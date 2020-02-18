@@ -6,7 +6,7 @@
 /*   By: echeung <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 14:48:30 by echeung           #+#    #+#             */
-/*   Updated: 2020/02/17 18:09:35 by echeung          ###   ########.fr       */
+/*   Updated: 2020/02/17 18:16:23 by echeung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,18 +38,18 @@
 # define SHAPE_18 "#...##..#"
 # define SHAPE_19 "###..#"
 
-int	read_file(char *str);
-int valid_tetrimino(char *buff, int ret);
+int		read_file(char *str);
+int		valid_tetrimino(char *buff, int ret);
 char	*make_string(char *buff);
-int valid_shape(char *buff);
-int valid_char(char *buff);
+int		valid_shape(char *buff);
+int		valid_char(char *buff);
 char	*get_shape(char *buff);
 char	*cmp_shape(char *tmp);
 void	solve(char tetri[27][27], int count);
 void	make_board(char board[12][12], int size);
-int	solve_recursion(char tetri[27][27], char board[12][12], int size, char *l);
+int		recursion(char tetri[27][27], char board[12][12], int size, char *l);
 void	place_board(char *tetri, char board[12][12], int xy[2], char letters);
-int	overlap(char *tetri, char board[12][12], int a, int b);
+int		overlap(char *tetri, char board[12][12], int a, int b);
 void	print_board(char board[12][12], int size);
 
 #endif

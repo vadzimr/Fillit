@@ -6,13 +6,13 @@
 /*   By: echeung <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 16:10:50 by echeung           #+#    #+#             */
-/*   Updated: 2020/02/17 17:48:42 by echeung          ###   ########.fr       */
+/*   Updated: 2020/02/17 18:12:33 by echeung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-char	*cmp_shape(char tmp)
+char	*cmp_shape(char *tmp)
 {
 	char	*coor_str;
 
@@ -54,7 +54,7 @@ char	*get_shape(char *buff)
 	while (buff[start] == '.')
 		start++;
 	while (buff[end] == '.')
-		end--;	
+		end--;
 	len = end - start + 1;
 	if (!(tmp = (char*)malloc(sizeof(char) * len + 1)))
 		return (NULL);

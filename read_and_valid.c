@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   valid.c                                            :+:      :+:    :+:   */
+/*   read_and_valid.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: echeung <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 18:56:37 by echeung           #+#    #+#             */
-/*   Updated: 2020/02/17 17:54:20 by echeung          ###   ########.fr       */
+/*   Updated: 2020/02/17 21:48:44 by echeung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int	valid_char(char *buff)
+int		valid_char(char *buff)
 {
 	int	i;
 	int	count;
@@ -21,7 +21,7 @@ int	valid_char(char *buff)
 	count = 0;
 	while (i < 19)
 	{
-		if (buff[i] && buff[i] != '#' && buff != '.')
+		if (buff[i] && buff[i] != '#' && buff[i] != '.' && buff[i] != '\n')
 			return (0);
 		if (buff[i] == '\n' && ((i + 1) % 5) != 0)
 			return (0);
@@ -34,7 +34,7 @@ int	valid_char(char *buff)
 	return (count);
 }
 
-int	valid_shape(char *buff)
+int		valid_shape(char *buff)
 {
 	int	i;
 	int	adj;
@@ -56,7 +56,7 @@ int	valid_shape(char *buff)
 		}
 		i++;
 	}
-		return (adj);
+	return (adj);
 }
 
 char	*make_string(char *buff)
@@ -82,31 +82,31 @@ char	*make_string(char *buff)
 	return (tmp);
 }
 
-int	valid_tetrimino(char *buff, int ret)
+int		valid_tetrimino(char *buff, int ret)
 {
 	int		i;
-	int		count;
-	char	tetri[27][22];
+	int		j;
+	char	tetri[27][27];
 
 	i = 0;
-	count = 0;
+	j = 0;
 	while (i <= ret)
 	{
 		if (valid_char(&buff[i]) != 4)
 			return (0);
 		if (valid_shape(&buff[i]) != 6 && valid_shape(&buff[i]) != 8)
 			return (0);
-		if ((ft_strcpy(tetri[count] = make_string(&buff[i]))) == NULL)
+		if ((ft_strcpy(tetri[j], make_string(&buff[i]))) == NULL)
 			return (0);
 		i += 21;
-		count++;
+		j++;
 	}
-	ft_strcpy(tetri[count], "NULL");
-	solve(tetri, count);
+	ft_strcpy(tetri[j], "NULL");
+	solve(tetri, j);
 	return (1);
 }
 
-int	read_file(char *str)
+int		read_file(char *str)
 {
 	int		fd;
 	int		ret;
@@ -114,14 +114,14 @@ int	read_file(char *str)
 	char	buff[545];
 
 	fd = open(str, O_RDONLY);
-	if (fd < 0 || fd > FD_SIZE)
+	if (fd < 0 || fd > 1025)
 		return (0);
 	ret = read(fd, buff, 545);
 	buff[ret] = '\0';
 	close(fd);
 	if (ret < 19 || ret > 544 || (ret + 1) % 21 != 0)
 		return (0);
-	if (!(valid_tetrimino(buff, ret)))
+	if (!valid_tetrimino(buff, ret))
 		return (0);
 	i = 0;
 	while (i++ < (ret - 1))
