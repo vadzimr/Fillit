@@ -6,16 +6,17 @@
 /*   By: echeung <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 16:10:50 by echeung           #+#    #+#             */
-/*   Updated: 2020/02/10 13:31:05 by echeung          ###   ########.fr       */
+/*   Updated: 2020/02/17 17:48:42 by echeung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-char	cmp_shape(char tmp)
+char	*cmp_shape(char tmp)
 {
 	char	*coor_str;
 
+	coor_str = NULL;
 	(!(ft_strcmp(tmp, SHAPE_1))) && (coor_str = "00010203");
 	(!(ft_strcmp(tmp, SHAPE_2))) && (coor_str = "00103020");
 	(!(ft_strcmp(tmp, SHAPE_3))) && (coor_str = "00011011");
@@ -35,12 +36,11 @@ char	cmp_shape(char tmp)
 	(!(ft_strcmp(tmp, SHAPE_17))) && (coor_str = "10011112");
 	(!(ft_strcmp(tmp, SHAPE_18))) && (coor_str = "00011102");
 	(!(ft_strcmp(tmp, SHAPE_19))) && (coor_str = "00102011");
-	if (coor_str == NULL)
-		return (NULL);
+	free(tmp);
 	return (coor_str);
 }
 
-char	get_shape(char *buff)
+char	*get_shape(char *buff)
 {
 	int		start;
 	int		end;

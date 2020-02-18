@@ -6,7 +6,7 @@
 /*   By: echeung <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 21:42:02 by echeung           #+#    #+#             */
-/*   Updated: 2020/02/10 15:49:57 by echeung          ###   ########.fr       */
+/*   Updated: 2020/02/17 17:52:55 by echeung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	overlap(char *tetri, char board[12][12], int a, int b)
 	j = 0;
 	x = tetri[j] - '0' + a;
 	y = tetri[j + 1] - '0' + b;
-	while ((j < 8) && board[x][y] == '.')
+	while ((j < 8) && board[y][x] == '.')
 	{
 		j += 2;
 		x = tetri[j] - '0' + a;
@@ -43,37 +43,36 @@ void	place_board(char *tetri, char board[12][12], int xy[2], char letters)
 	{
 		x = tetri[j] - '0' + xy[0];
 		y = tetri[j + 1] - '0' + xy[1];
-		board[x][y] = letters;
+		board[y][x] = letters;
 		j += 2;
 	}
 }
 
-int	solve_recursion(char tetri[27][27], char board[12][12], int size, char *letters)
+int	solve_recursion(char tetri[27][27], char board[12][12], int size, char *l)
 {
 	int	i;
 	int	xy[2];
 
 	i = 0;
-	xy[0] = 0;
 	xy[1] = 0;
-	if (tetri[i] == NULL)
+	if (ft_strcpy(tetri[i], "NULL") == 0)
 		return (1);
-	while ((tetri[i][4] - '0' + xy[0]) < size)
+	while ((tetri[i][7] - '0' + xy[1]) < size)
 	{
-		while ((tetri[i][7] - '0' + xy[1]) < size)
+		xy[0] = 0;
+		while ((tetri[i][4] - '0' + xy[0]) < size)
 		{
 			if (overlap(tetri[i], board, xy[0], xy[1]) == 8)
 			{
-				place_board(tetri[i], board, xy, letters[i]);
-				if (solve_recursion(&tetri[i + 1], board, size, &letters[i + 1]) == 1)
+				place_board(tetri[i], board, xy, l[i]);
+				if (solve_recursion(&tetri[i + 1], board, size, &l[i + 1]) == 1)
 				   return (1);
 				else
 					place_board(tetri[i], board, xy, '.');
 			}
-			xy[1]++;
+			xy[0]++;
 		}
-		xy[1] = 0;
-		xy[0]++;
+		xy[1]++;
 	}
 	return (0);
 }
@@ -85,18 +84,18 @@ void	make_board(char board[12][12], int size)
 
 	x = 0;
 	y = 0;
-	while (x < size)
+	while (y < size)
 	{
-		while (y < size)
+		while (x < size)
 		{
-			board[x][y] = '.';
-			y++;
+			board[y][x] = '.';
+			x++;
 		}
-		x++;
+		y++;
 	}
 }
 
-void	solve(char **tetri, int count)
+void	solve(char tetri[27][27], int count)
 {
 	char	board[12][12];
 	char	*letters;

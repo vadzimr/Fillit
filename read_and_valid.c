@@ -6,7 +6,7 @@
 /*   By: echeung <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 18:56:37 by echeung           #+#    #+#             */
-/*   Updated: 2020/02/10 16:15:45 by echeung          ###   ########.fr       */
+/*   Updated: 2020/02/17 17:54:20 by echeung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	valid_char(char *buff)
 			return (0);
 		if (buff[i] == '#')
 			count++;
+		i++;
 	}
-	i++:
 	if (buff[i] == '\0' || buff[i] != '\n')
 		return (0);
 	return (count);
@@ -55,8 +55,31 @@ int	valid_shape(char *buff)
 				adj++;
 		}
 		i++;
-		return (adj);
 	}
+		return (adj);
+}
+
+char	*make_string(char *buff)
+{
+	int		j;
+	int		k;
+	char	str[20];
+	char	*tmp;
+
+	j = 0;
+	k = 0;
+	while (j < 19)
+	{
+		if (buff[j] == '.' || buff[j] == '#')
+		{
+			str[k] = buff[j];
+			k++;
+		}
+		j++;
+	}
+	str[k] = '\0';
+	tmp = cmp_shape(get_shape(str));
+	return (tmp);
 }
 
 int	valid_tetrimino(char *buff, int ret)
@@ -73,11 +96,12 @@ int	valid_tetrimino(char *buff, int ret)
 			return (0);
 		if (valid_shape(&buff[i]) != 6 && valid_shape(&buff[i]) != 8)
 			return (0);
-		if (tetri[count] = cmp_shape(get_shape(&buff[i]) == NULL)
+		if ((ft_strcpy(tetri[count] = make_string(&buff[i]))) == NULL)
 			return (0);
 		i += 21;
 		count++;
 	}
+	ft_strcpy(tetri[count], "NULL");
 	solve(tetri, count);
 	return (1);
 }
@@ -100,14 +124,13 @@ int	read_file(char *str)
 	if (!(valid_tetrimino(buff, ret)))
 		return (0);
 	i = 0;
-	while (i < (ret - 1))
+	while (i++ < (ret - 1))
 	{
 		if ((i + 1) % 21 == 0)
 		{
 			if (buff[i] != '\n')
 				return (0);
 		}
-		i++;
 	}
 	return (1);
 }

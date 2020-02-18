@@ -6,7 +6,7 @@
 /*   By: echeung <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 12:44:59 by echeung           #+#    #+#             */
-/*   Updated: 2020/02/10 13:31:21 by echeung          ###   ########.fr       */
+/*   Updated: 2020/02/17 17:49:37 by echeung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@ void	print_board(char board[12][12], int size)
 	int	i;
 
 	i = 0;
-	while (i++ < size)
+	while (i < size)
 	{
-		write(1, board[i][i], size);
+		write(1, board[i], size);
 		write(1, "\n", 1);
+		i++;
 	}
 }
