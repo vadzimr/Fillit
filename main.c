@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: echeung <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: vrayinch <vrayinch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 18:27:38 by echeung           #+#    #+#             */
-/*   Updated: 2020/02/18 15:19:33 by echeung          ###   ########.fr       */
+/*   Updated: 2020/02/28 16:22:59 by vrayinch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ int	main(int ac, char **av)
 		ft_putstr("error\n");
 		return (1);
 	}
+
 	return (0);
 }

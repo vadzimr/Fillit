@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: echeung <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: vrayinch <vrayinch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/20 19:09:48 by echeung           #+#    #+#              #
-#    Updated: 2020/02/20 19:21:15 by echeung          ###   ########.fr        #
+#    Updated: 2020/02/20 21:04:02 by vrayinch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ all: $(NAME)
 
 $(NAME):
 	make -C $(LIBFT)
-	gcc $(FLAG) -o $(NAME) $(SRC) -I$(HEADER) -L. libft/libft.a
+	gcc $(FLAG) -o $(NAME) $(SRC) -I$(HEADER) -g -L. libft/libft.a
 
 clean:
 	/bin/rm -f $(OBJ)

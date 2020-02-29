@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   read_and_valid.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: echeung <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: vrayinch <vrayinch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 18:56:37 by echeung           #+#    #+#             */
-/*   Updated: 2020/02/17 21:48:44 by echeung          ###   ########.fr       */
+/*   Updated: 2020/02/20 21:03:41 by vrayinch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+
+#include<stdio.h>
 
 int		valid_char(char *buff)
 {
@@ -116,13 +118,16 @@ int		read_file(char *str)
 	fd = open(str, O_RDONLY);
 	if (fd < 0 || fd > 1025)
 		return (0);
+
 	ret = read(fd, buff, 545);
 	buff[ret] = '\0';
 	close(fd);
 	if (ret < 19 || ret > 544 || (ret + 1) % 21 != 0)
 		return (0);
+	
 	if (!valid_tetrimino(buff, ret))
 		return (0);
+
 	i = 0;
 	while (i++ < (ret - 1))
 	{
@@ -130,6 +135,7 @@ int		read_file(char *str)
 		{
 			if (buff[i] != '\n')
 				return (0);
+		
 		}
 	}
 	return (1);
